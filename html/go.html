@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="zh-CN" />
+<title>正在进入, 请稍候 ...... Please waiting ......</title>
+<script type="text/javascript">
+function hex2bin(str)
+{
+	var ascii = '';
+	var str_length = str.length;
+	for (var x = 0; x < str_length; x += 2)
+	{
+		ascii += String.fromCharCode(parseInt(str.substr(x, 2), 16));
+	}
+	return ascii;
+}
+var url_params = new Array();
+var params = document.location.search.substr(1).split('&');
+var goto_url = hex2bin('687474703a2f2f')+document.location.hostname+'/';
+for (var i = 0; i < params.length; i++)
+{
+	var param = params[i].split('=');
+	url_params[param[0]] = param[1];
+}
+if (url_params.p)
+{
+	goto_url += hex2bin('73686f772f')+hex2bin(url_params.p).replace(/\|/g, '/')+hex2bin('2e68746d6c');
+	document.write('<div style="text-align:center;">如果没有自动进入下一页, 请您点击下面的地址<br /><a href="'+ goto_url +'">'+ goto_url +'</a></div>');
+}
+document.location.href = goto_url;
+</script>
+</head><body></body></html>
